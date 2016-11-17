@@ -50,7 +50,7 @@ public class Mann {
 		// TODO: prüfen ob Array schon voll ist --> wenn ja: Fehler "kein Platz mehr für Kind
 		
 		for(int i = 0; i < kinder.length; i++){
-			if(kinder[i] != null){
+			if(kinder[i] == null){
 				kinder[i] = kind;
 				break;
 			}
