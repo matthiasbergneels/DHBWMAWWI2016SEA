@@ -1,0 +1,21 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+
+class Auto{
+	- farbe: String
+	- raeder: int
+	- kmh: float
+	- cabrio: boolean
+	- kennzeichen: String
+	- {static} autozaehler: int
+	+ tanken(liter: float): void
+	+ beschleunigen(kmh: float): void
+	+ bremsen(kmh: float): void
+	- schieben(): boolean
+	+ reifenWechseln(reifen: String[], winter: boolean): boolean
+	+ {static} anzahlAllerAutos(): int 
+}
+
+
+@enduml

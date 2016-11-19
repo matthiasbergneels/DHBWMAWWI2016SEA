@@ -1,0 +1,52 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+Mann "1" -right- "1" Frau : ist verheiratet mit
+Mann "1" -- "n" Kind : Vater von >
+Frau "1" -- "n" Kind : Mutter von >
+Mann "n" -- "m" Frau : ist Geliebte(r) von
+
+class Mann{
+	- name : String
+	- ehefrau : Frau
+	- kinder : Kind[]
+	- geliebte : Frau[]
+	+ Mann(name: String)
+	+ getName() : String
+	+ setName(name: String) : void
+	+ getEhefrau() : Frau
+	+ setEhefrau(ehefrau: Frau) : void
+	+ getKinder() : Kind[]
+	+ setKind(kind: Kind) : void
+	+ getGeliebte() : Frau[]
+	+ setGeliebte(geliebte: Frau) : void
+}
+
+class Frau{
+	- name : String
+	- ehemann : Mann
+	- kinder : Kind[]
+	- geliebte : Mann[]
+	+ Frau(name: String)
+	+ getName() : String
+	+ setName(name: String) : void
+	+ getEhemann() : Mann
+	+ setEhemann(ehemann: Mann) : void
+	+ getKinder() : Kind[]
+	+ setKind(kind: Kind) : void
+	+ getGeliebte() : Mann[]
+	+ setGeliebter(geliebter: Mann) : void 
+}
+
+class Kind{
+	- name : String
+	- vater : Mann
+	- mutter : Frau
+	+ Kind(name: String, vater: Mann, mutter: Frau)
+	+ getVater() : Mann
+	- setVater(vater: Mann) : void
+	+ getMutter() : Frau
+	- setMutter(mutter: Frau) : void
+}
+
+@enduml

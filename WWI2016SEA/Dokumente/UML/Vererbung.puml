@@ -1,0 +1,49 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+Tier <|-- Hund
+Tier <|-- Vogel
+Tier <|-- Fisch
+
+
+class Tier{
+	- groesse : float
+	- bezeichnung : String
+	- gewicht : float
+	+ Tier(groesse: float, bezeichnung: String, gewicht: float)
+	+ fressen() : void
+	+ bewegen() : void
+	+ atmen() : void
+	+ getGroesse() : float
+	+ setGroesse(groesse: float) : void
+	+ getBezeichnung() : String
+	+ setBezeichnung(bezeichnung: String) : void
+	+ getGewicht() : float
+	+ setGewicht(gewicht: float) : void
+}
+
+class Hund{
+	- rasse : String
+	+ Hund(groesse: float, bezeichnung: String, gewicht: float, rasse: String)
+	+ bellen() : void
+	+ getRasse() : String
+	+ setRasse(rasse: String) : void
+}
+
+class Vogel{
+	- fliegen : boolean
+	+ Vogel(groesse: float, bezeichnung: String, gewicht: float, fliegen: boolean)
+	+ zwitschern() : void
+	+ isFliegen() : boolean
+	+ setFliegen(fliegen: boolean) : void
+}
+
+class Fisch{
+	- knorpelfisch : boolen
+	+ Fisch(groesse: float, bezeichnung: String, gewicht: float, knorpelfisch)
+	+ blubbern() : void
+	+ isKnorpelfisch() : boolean
+	+ setKnorpelfisch(knorpelfisch: boolean) : void
+}
+
+@enduml

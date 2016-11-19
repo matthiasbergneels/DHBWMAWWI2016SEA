@@ -6,7 +6,7 @@ public class Frau {
 	
 	// ...
 	// Assoziation - verheiratet mit
-	private Mann ehemann;
+	private Mann ehemann; 
 	
 	private Kind[] kinder;
 	
