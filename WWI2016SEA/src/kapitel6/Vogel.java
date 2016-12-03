@@ -14,6 +14,10 @@ public class Vogel extends Tier {
 	public void zwitschern(){
 		System.out.println("Der Vogel " + this.getBezeichnung() + " zwitschert!");
 	}
+	
+	public void atmen(){
+		System.out.println("Der Vogel " + this.getBezeichnung() + " atmet und klappert mit dem Schnabel!");
+	}
 
 	public boolean isFliegen() {
 		return fliegen;

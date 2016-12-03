@@ -1,6 +1,6 @@
 package kapitel6;
 
-public class Tier {
+public abstract class Tier {
 	
 	private String bezeichnung;
 	private float gewicht;
@@ -14,17 +14,16 @@ public class Tier {
 	}
 	
 	
-	public void fresssen(){
+	public void fressen(){
 		System.out.println(bezeichnung + " frisst");
 	}
 	
-	public void bewegen(){
+	// bewegen darf in Subklassen nicht überschrieben werden (final)
+	public final void bewegen(){
 		System.out.println(bezeichnung + " bewegt sich");
 	}
 	
-	public void atmen(){
-		System.out.println(bezeichnung + " atmet");
-	}
+	public abstract void atmen();
 	
 	
 	public String getBezeichnung() {
@@ -47,6 +46,11 @@ public class Tier {
 	}
 	
 	
-	
+	@Override
+	public String toString() {
+		
+		
+		return this.getBezeichnung() + " ist " + this.getGroesse() + " groß, " + this.getGewicht() + "schwer";
+	}
 
 }

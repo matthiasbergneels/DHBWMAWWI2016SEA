@@ -4,7 +4,7 @@ public class SwitchBeispiel {
 
 	public static void main(String[] args) {
 		
-		int note = 19;
+		int note = 2;
 		
 		switch (note) {
 			default:
