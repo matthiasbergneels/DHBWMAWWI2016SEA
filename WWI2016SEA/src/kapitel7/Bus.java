@@ -1,5 +1,7 @@
 package kapitel7;
 
+import kapitel8.Ausgebucht;
+
 public class Bus implements Buchbar, Tankbar{
 	
 	private boolean[][] sitze;		// false = freierSitze
@@ -31,7 +33,11 @@ public class Bus implements Buchbar, Tankbar{
 	}
 
 	@Override
-	public void reservieren(int anzahlReservierungen) {
+	public void reservieren(int anzahlReservierungen) throws Ausgebucht{
+		if(anzahlReservierungen > this.freiePlaetze()){
+			throw new Ausgebucht(this.freiePlaetze() - anzahlReservierungen);
+		}
+		
 		for(int i = 0; i < sitze.length; i++){
 			for(int j = 0; j < sitze[i].length; j++){
 				if(sitze[i][j] == false){
