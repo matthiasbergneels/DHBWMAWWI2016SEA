@@ -15,9 +15,9 @@ public class Uebung1 {
 			for (int i = 2; i <= 100; i++) {
 				text += i;
 				text += "\n";
-				datei.write(text, 0, text.length());
-				datei.flush();
 			}
+			datei.write(text, 0, text.length());
+			datei.flush();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

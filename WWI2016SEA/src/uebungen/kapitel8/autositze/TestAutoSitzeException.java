@@ -12,6 +12,7 @@ public class TestAutoSitzeException {
 			sitze[1] = new AutoSitz(true, "Schwarz");
 		}catch(FalscheParameter e){
 			System.out.println(e.getMessage());
+			//throw new Exception("Neue Exception weitergeben!");
 		}finally{
 			int count = 0;
 			for(AutoSitz sitz : sitze){

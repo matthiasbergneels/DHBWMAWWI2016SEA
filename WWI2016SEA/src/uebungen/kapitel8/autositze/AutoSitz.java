@@ -8,7 +8,8 @@ public class AutoSitz {
 	
 	public AutoSitz(boolean ledersitze, String farbe) throws FalscheParameter{
 		
-		if(ledersitze && ((!farbe.toLowerCase().equals("schwarz")) && (!farbe.toLowerCase().equals("weiss")))){
+		if(ledersitze && 
+			((!farbe.toLowerCase().equals("schwarz")) && (!farbe.toLowerCase().equals("weiss")))){
 			throw new FalscheParameter(ledersitze, farbe);
 		}
 		

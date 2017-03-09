@@ -1,0 +1,52 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+Tier <|.. Hund : implementiert
+Tier <|.. Vogel : implementiert
+Tier <|.. Fisch : implementiert
+
+
+interface Tier{
+	+ fressen() : void
+	+ bewegen() : void
+	+ atmen() : void
+}
+
+class Hund{
+	- groesse : float
+	- bezeichnung : String
+	- gewicht : float
+	- rasse : String
+	+ Hund(groesse: float, bezeichnung: String, gewicht: float, rasse: String)
+	+ fressen() : void
+	+ bewegen() : void
+	+ atmen() : void
+	+ bellen() : void
+}
+
+class Vogel{
+	- groesse : float
+	- bezeichnung : String
+	- gewicht : float
+	- fliegen : boolean
+	+ Vogel(groesse: float, bezeichnung: String, gewicht: float, fliegen: boolean)
+	+ fressen() : void
+	+ bewegen() : void
+	+ atmen() : void
+	+ zwitschern() : void
+}
+
+class Fisch{
+	- groesse : float
+	- bezeichnung : String
+	- gewicht : float
+	- knorpelfisch : boolen
+	+ Fisch(groesse: float, bezeichnung: String, gewicht: float, knorpelfisch)
+	+ fressen() : void
+	+ bewegen() : void
+	+ atmen() : void
+	+ blubbern() : void
+
+}
+
+@enduml
