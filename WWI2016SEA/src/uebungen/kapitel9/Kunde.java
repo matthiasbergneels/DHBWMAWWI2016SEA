@@ -44,4 +44,44 @@ public class Kunde implements Comparable<Kunde>{
 		return "Kunden#: " + this.getKundenNummer() + ", Name: " + this.getName() + ", " + this.getVorname();
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		
+		// Alias Check
+		if(this == obj){
+			return true;
+		}
+		
+		// Null Check
+		if(obj == null){
+			return false;
+		}
+		
+		// Type Check
+		if (!(obj.getClass().equals(this.getClass()))) {
+				return false;
+		}
+		
+		// Attribute Check
+		// Passend zu compareTo() Methode werden nur dort relevante Attribute verglichen
+		Kunde kunde = (Kunde)obj;
+		
+		if(!(this.getKundenNummer() == kunde.getKundenNummer())){
+			return false;
+		}
+		
+		
+		return true;
+	}
+	
+	@Override
+	public int hashCode() {
+		
+		int hashCode = 0;
+		
+		// Passend zu equals() werden nur dort relevante Attribute zur Erzeugung des HashCode verwendet 
+		hashCode = new Integer(this.getKundenNummer()).hashCode();
+		
+		return hashCode;
+	}
 }

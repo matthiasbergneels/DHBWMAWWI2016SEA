@@ -45,5 +45,55 @@ public class Student implements Comparable<Student>{
 	}
 	
 	
+	@Override
+	public boolean equals(Object obj) {
+		
+		// Alias Check
+		if(this == obj){
+			return true;
+		}
+		
+		// Null Check
+		if(obj == null){
+			return false;
+		}
+		
+		// Type Check
+		if(this.getClass() != obj.getClass()){
+			return false;
+		}
+		
+		// Attribute Check
+		Student student = (Student)obj;
+		
+		if(this.getMatrikelnummer() != student.getMatrikelnummer()){
+			return false;
+		}
+		
+		if(!this.getNachname().equals(student.getNachname())){
+			return false;
+		}
+		
+		if(!this.getVorname().equals(student.getVorname())){
+			return false;
+		}
+		
+		return true;
+	}
+	
+	
+	@Override
+	public int hashCode() {
+		
+		int hc = 0;
+		
+		//Berücksichtigt alle Attribute die in 
+		//der equals-Methode für den inhaltlichen Vergleich herangezogen werden
+		hc = this.getMatrikelnummer() + this.getNachname().hashCode() 
+					+ this.getVorname().hashCode();
+		
+		return hc;
+	}
+	
 
 }

@@ -7,7 +7,7 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.Vector;
 
-public class TestKunde {
+public class TestKundeLaufzeitListenModifikation {
 
 	public static void main(String[] args) {
 		
@@ -17,7 +17,10 @@ public class TestKunde {
 				new Kunde("Beispiel", "Hans", 5180),
 				new Kunde("Mustermann", "Hilde", 4712),
 				new Kunde("Vorbild", "Theodor", 8278),
-				new Kunde("Dummy", "Jimmy", 1111)
+				new Kunde("Dummy", "Jimmy", 1111),
+				new Kunde("Dummy", "Jimmy", 1112),
+				new Kunde("Dummy", "Jimmy", 1113),
+				new Kunde("Dummy", "Jimmy", 1114)
 		};
 		
 		// Aufgabe 1
@@ -39,7 +42,6 @@ public class TestKunde {
 			System.out.println(kundenIterator.next());
 		}
 		
-		
 		// Aufgabe 2
 		
 		// Kundenverzeichnis als Liste (List) anlegen
@@ -59,10 +61,34 @@ public class TestKunde {
 		
 		while(kundenIterator.hasNext()){
 			System.out.println(kundenIterator.next());
+			//kundenIterator.remove();
+			//System.out.println(kundenVerzeichnisNachName.size());
 		}
 		
 		
+		
+		
+		
+		System.out.println("Zähler basierte Ausgabe der Sortierten Kundenmenge:");
+		for(int i = 0; i < kundenVerzeichnisNachName.size(); i++){
+			System.out.println(kundenVerzeichnisNachName.get(i));
+			if(kundenVerzeichnisNachName.get(i).getName().equals("Dummy")){
+				kundenVerzeichnisNachName.remove(i);
+			}
+			
+			System.out.println(kundenVerzeichnisNachName.size());
+		}
+		
+		System.out.println(kundenVerzeichnisNachName.size());
 
+		
+		for(Kunde k : kundenVerzeichnisNachName){
+			System.out.println(k);
+			//kundenVerzeichnisNachName.remove(k);
+			//System.out.println(kundenVerzeichnisNachName.size());
+		}
+		
+		System.out.println(kundenVerzeichnisNachName.size());
 	}
 
 }
