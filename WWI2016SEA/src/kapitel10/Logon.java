@@ -25,9 +25,6 @@ import javax.swing.text.MaskFormatter;
 
 public class Logon extends JFrame{
 	
-	private final String ACTION_OK = "ACTION_OK";
-	private final String ACTION_CANCEL = "ACTION_CANCEL";
-	
 	
 	private JComboBox<String> myComboBox;
 	
@@ -87,10 +84,6 @@ public class Logon extends JFrame{
 		// create & assign Buttons
 		JButton okButton = new JButton("OK");		
 		JButton cancelButton = new JButton("Cancel");
-		
-		okButton.setActionCommand(ACTION_OK);
-		cancelButton.setActionCommand(ACTION_CANCEL);
-		
 		
 		southPanel.add(okButton);
 		southPanel.add(cancelButton);
