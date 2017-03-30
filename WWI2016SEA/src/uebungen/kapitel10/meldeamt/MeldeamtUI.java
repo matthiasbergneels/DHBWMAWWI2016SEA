@@ -5,6 +5,7 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
@@ -12,12 +13,16 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 
+@SuppressWarnings("serial")
 public class MeldeamtUI extends JFrame {
 
 	private static final String ACTION_ADD = "ADD";
@@ -25,9 +30,10 @@ public class MeldeamtUI extends JFrame {
 	private static final String ACTION_SEARCH = "SEARCH";
 	private static final String ACTION_DELETE = "DELETE";
 	private static final String ACTION_SHOWLIST = "SHOWLIST";
+	private static final String ACTION_CLOSE = "CLOSE";
 
 	private JLabel lblNotifications;
-	private JComboBox cbbTitle;
+	private JComboBox<String> cbbTitle;
 	private JTextField tfName;
 	private JTextField tfVorname;
 	private JTextField tfGebName;
@@ -95,7 +101,10 @@ public class MeldeamtUI extends JFrame {
 					}
 				} else if (action.equals(ACTION_SHOWLIST)) {
 					Listenoperationen.listeAusgeben();
+				} else if (action.equals(ACTION_CLOSE)) {
+					System.exit(0);
 				}
+				
 
 			}
 		};
@@ -150,9 +159,9 @@ public class MeldeamtUI extends JFrame {
 		contactDataPanel.setBorder(contactEtchedBorder);
 		centerPanel.add(contactDataPanel);
 
-		Object[] titleValues = { Einwohner.ANREDE_FRAU, Einwohner.ANREDE_HERR };
+		String[] titleValues = { Einwohner.ANREDE_FRAU, Einwohner.ANREDE_HERR };
 
-		cbbTitle = new JComboBox(titleValues);
+		cbbTitle = new JComboBox<String>(titleValues);
 		tfName = new JTextField(20);
 		tfName.setText("Mustermann");
 		tfVorname = new JTextField(20);
@@ -226,12 +235,51 @@ public class MeldeamtUI extends JFrame {
 		btnShowList.setActionCommand(ACTION_SHOWLIST);
 		btnShowList.addActionListener(btnListener);
 
+
 		southPanel.add(btnAdd);
 		southPanel.add(btnShow);
 		southPanel.add(btnSearch);
 		southPanel.add(btnDelete);
 		southPanel.add(btnShowList);
 
+		
+		
+		JMenuItem menuItemAdd = new JMenuItem("Hinzufügen");
+		menuItemAdd.setActionCommand(ACTION_ADD);
+		menuItemAdd.addActionListener(btnListener);
+		
+		JMenuItem menuItemDelete = new JMenuItem("Löschen");
+		menuItemDelete.setActionCommand(ACTION_DELETE);
+		menuItemDelete.addActionListener(btnListener);
+		
+		JMenuItem menuItemClose = new JMenuItem("Schliessen");
+		menuItemClose.setActionCommand(ACTION_CLOSE);
+		menuItemClose.addActionListener(btnListener);
+		
+		JMenu general = new JMenu("Allgemein");
+		general.add(menuItemAdd);
+		general.add(menuItemDelete);
+		general.addSeparator();
+		general.add(menuItemClose);
+		
+		
+		JMenuItem menuItemSearch = new JMenuItem("Suchen");
+		menuItemSearch.setActionCommand(ACTION_SEARCH);
+		menuItemSearch.addActionListener(btnListener);
+		
+		JMenuItem menuItemShowList = new JMenuItem("Liste augeben");
+		menuItemShowList.setActionCommand(ACTION_SHOWLIST);
+		menuItemShowList.addActionListener(btnListener);
+		
+		JMenu listFunctions = new JMenu("Listenfunktionen");
+		listFunctions.add(menuItemSearch);
+		listFunctions.add(menuItemShowList);
+		
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.add(general);
+		menuBar.add(listFunctions);
+		
+		this.setJMenuBar(menuBar);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 		this.pack();

@@ -25,16 +25,35 @@ import javax.swing.text.MaskFormatter;
 
 public class Logon extends JFrame{
 	
+	private static final String ACTION_OK = "ACTION_OK";
+	private static final String ACTION_EXIT = "ACTION_EXIT";
 	
-	private JComboBox<String> myComboBox;
+	//private JComboBox<String> myComboBox;
+	private JFormattedTextField portField = null;
 	
 	public Logon(){
 		
+		String[] valueHelp = {"FTP", "Telnet", "SMTP", "HTTP"};
+		JComboBox<String> myComboBox = new JComboBox<String>(valueHelp);
+		
+		ItemListener comboBoxListener = new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange() == ItemEvent.SELECTED){
+					System.out.println("Item state changed! " + e.getStateChange());
+					System.out.println(myComboBox.getSelectedItem());
+				}
+				
+				
+			}
+		};
+		
 		this.setTitle("Logon");
 		
-		String[] valueHelp = {"FTP", "Telnet", "SMTP", "HTTP"};
-		myComboBox = new JComboBox<String>(valueHelp);
-		String myText = "Blub!";
+		
+
+		myComboBox.addItemListener(comboBoxListener);
 		
 		// initialize Panels
 		JPanel mainPanel = new JPanel(new BorderLayout());
@@ -54,7 +73,7 @@ public class Logon extends JFrame{
 		((GridLayout)connectionPanel.getLayout()).setVgap(15);
 		((GridLayout)filePanel.getLayout()).setVgap(15);
 		
-		JFormattedTextField portField = null;
+		
 		try {
 			 portField = new JFormattedTextField(new MaskFormatter("#####"));
 		} catch (ParseException e) {
@@ -82,12 +101,31 @@ public class Logon extends JFrame{
 		filePanel.add(new JPanel(new FlowLayout()).add(new JTextField(7)));
 		
 		// create & assign Buttons
-		JButton okButton = new JButton("OK");		
-		JButton cancelButton = new JButton("Cancel");
+		JButton okButton = new JButton("OK");
+		okButton.setActionCommand(ACTION_OK);
+		JButton cancelButton = new JButton("Exit");
+		cancelButton.setActionCommand(ACTION_EXIT);
 		
 		southPanel.add(okButton);
 		southPanel.add(cancelButton);
 		
+		ActionListener buttonListener = new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				System.out.println("Button gedrückt - " + e.getActionCommand());
+				
+				if(e.getActionCommand().equals(ACTION_EXIT)){
+					System.exit(0);
+				}else if(e.getActionCommand().equals(ACTION_OK)){
+					System.out.println("Inhalt des Port: " + portField.getText());
+				}
+				
+			}
+		};
+		okButton.addActionListener(buttonListener);
+		cancelButton.addActionListener(buttonListener);
 
 		// create & assign Borders
 		Border etchedBorder = BorderFactory.createEtchedBorder();

@@ -49,7 +49,6 @@ public class Einwohner implements Comparable<Einwohner> {
 		
 		if(!this.getName().equals(e.getName())){ return false; }
 		if(!this.getVorname().equals(e.getVorname())){ return false; }
-		if(!this.getGebName().equals(e.getGebName())){ return false; }
 		
 		return true;
 	}
