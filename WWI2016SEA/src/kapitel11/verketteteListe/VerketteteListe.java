@@ -23,14 +23,6 @@ public class VerketteteListe {
 			vorgaengerKnoten.setNaechsterKnoten(neuerKnoten);
 		}
 		
-		Knoten neuerKnoten = new Knoten(student);
-		
-		if(ersterKnoten == null){
-			ersterKnoten = neuerKnoten;
-		}else{
-			neuerKnoten.setNaechsterKnoten(ersterKnoten);
-			ersterKnoten = neuerKnoten;
-		}
 	}
 	
 	public Student find(int matrikelNr){
