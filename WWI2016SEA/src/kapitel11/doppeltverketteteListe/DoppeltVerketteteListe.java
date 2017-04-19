@@ -1,16 +1,36 @@
-package kapitel11.verketteteListe;
+package kapitel11.doppeltverketteteListe;
 
 import kapitel11.Student;
 
-public class VerketteteListe {
+public class DoppeltVerketteteListe {
 
 	private Knoten ersterKnoten = null;
+	private Knoten letzterKnoten = null;
 	
 	public void add(Student student){
 		Knoten neuerKnoten = new Knoten(student);
 		
 		neuerKnoten.setNaechsterKnoten(ersterKnoten);	
 		ersterKnoten = neuerKnoten;
+		
+		// Liste war bisher leer
+		if(letzterKnoten == null){
+			letzterKnoten = ersterKnoten;
+		}
+		
+	}
+	
+	public void addLast(Student student){
+		Knoten neuerKnoten = new Knoten(student);
+		
+		if(ersterKnoten == null && letzterKnoten == null){
+			// Liste war bisher leer
+			ersterKnoten = neuerKnoten;
+			letzterKnoten = neuerKnoten;
+		}else{
+			letzterKnoten.setNaechsterKnoten(neuerKnoten);	
+			letzterKnoten = neuerKnoten;
+		}
 		
 	}
 	
@@ -20,6 +40,10 @@ public class VerketteteListe {
 		if(vorgaengerKnoten != null){
 			Knoten neuerKnoten = new Knoten(student);
 			neuerKnoten.setNaechsterKnoten(vorgaengerKnoten.getNaechsterKnoten());
+			if(vorgaengerKnoten.getNaechsterKnoten() != null){
+				vorgaengerKnoten.getNaechsterKnoten().setVorherigerKnoten(neuerKnoten);
+			}
+			neuerKnoten.setVorherigerKnoten(vorgaengerKnoten);
 			vorgaengerKnoten.setNaechsterKnoten(neuerKnoten);
 		}
 		
@@ -50,48 +74,32 @@ public class VerketteteListe {
 	
 	public boolean remove(int matrikelNr){
 		
-		if(ersterKnoten != null){
+		Knoten zuLoeschenderKnoten = find(ersterKnoten, matrikelNr);
+		
+		if(zuLoeschenderKnoten != null){
 			
-			Knoten naktuellerKnoten = ersterKnoten;
-			if(naktuellerKnoten.getStudent().getMatrikelNr() == matrikelNr){
-				ersterKnoten = ersterKnoten.getNaechsterKnoten();
-				return true;
+			if(zuLoeschenderKnoten.getVorherigerKnoten() != null){
+				zuLoeschenderKnoten.getVorherigerKnoten().setNaechsterKnoten(zuLoeschenderKnoten.getNaechsterKnoten());
 			}
-			while(naktuellerKnoten.getNaechsterKnoten() != null){
-				if(naktuellerKnoten.getNaechsterKnoten().getStudent().getMatrikelNr() == matrikelNr){
-					
-					naktuellerKnoten.setNaechsterKnoten(naktuellerKnoten.getNaechsterKnoten().getNaechsterKnoten());
-					return true;
-				}
-				naktuellerKnoten = naktuellerKnoten.getNaechsterKnoten();
+			if(zuLoeschenderKnoten.getNaechsterKnoten() != null){
+				zuLoeschenderKnoten.getNaechsterKnoten().setVorherigerKnoten(zuLoeschenderKnoten.getVorherigerKnoten());
 			}
+			
+			return true;
 		}
+		
 		return false;
 	}
 	
 	public boolean remove(Student student){
 		
-		if(ersterKnoten != null){
-			
-			Knoten aktuellerKnoten = ersterKnoten;
-			if(aktuellerKnoten.getStudent().equals(student)){
-				ersterKnoten = ersterKnoten.getNaechsterKnoten();
-				return true;
-			}
-			while(aktuellerKnoten.getNaechsterKnoten() != null){
-				if(aktuellerKnoten.getNaechsterKnoten().getStudent().equals(student)){
-					
-					aktuellerKnoten.setNaechsterKnoten(aktuellerKnoten.getNaechsterKnoten().getNaechsterKnoten());
-					return true;
-				}
-				aktuellerKnoten = aktuellerKnoten.getNaechsterKnoten();
-			}
-		}
-		return false;
+		return remove(student.getMatrikelNr());
+		
 	}
 	
 	public void clear(){
 		ersterKnoten = null;
+		letzterKnoten = null;
 	}
 	
 	
@@ -124,6 +132,7 @@ public class VerketteteListe {
 	private class Knoten{
 		private Student student;
 		private Knoten naechsterKnoten = null;
+		private Knoten vorherigerKnoten = null;
 		
 		public Knoten(Student student){
 			this.setStudent(student);
@@ -143,6 +152,14 @@ public class VerketteteListe {
 		
 		public Knoten getNaechsterKnoten(){
 			return this.naechsterKnoten;
+		}
+		
+		public void setVorherigerKnoten(Knoten vorherigerKnoten){
+			this.vorherigerKnoten = vorherigerKnoten;
+		}
+		
+		public Knoten getVorherigerKnoten(){
+			return this.vorherigerKnoten;
 		}
 	}
 }
