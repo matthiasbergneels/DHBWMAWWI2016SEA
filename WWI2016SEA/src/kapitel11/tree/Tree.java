@@ -45,7 +45,9 @@ public class Tree {
 	
 	private boolean insert(Knoten aktuellerKnoten, Knoten einzufuegenderKnoten){
 		
-		if(((Comparable<Student>)aktuellerKnoten.getData()).compareTo(einzufuegenderKnoten.getData()) > 0){
+		Comparable<Student> aktuellesVergleichsObjekt = (Comparable<Student>)aktuellerKnoten.getData();
+		
+		if(aktuellesVergleichsObjekt.compareTo(einzufuegenderKnoten.getData()) > 0){
 			if(aktuellerKnoten.getLinkerKnoten() != null){
 				return insert(aktuellerKnoten.getLinkerKnoten(), einzufuegenderKnoten);
 			}else{

@@ -11,7 +11,13 @@ public class DoppeltVerketteteListe {
 		Knoten neuerKnoten = new Knoten(student);
 		
 		neuerKnoten.setNaechsterKnoten(ersterKnoten);	
+		if(ersterKnoten != null){
+			ersterKnoten.setVorherigerKnoten(neuerKnoten);
+		}
+		
 		ersterKnoten = neuerKnoten;
+		
+		
 		
 		// Liste war bisher leer
 		if(letzterKnoten == null){
@@ -28,7 +34,8 @@ public class DoppeltVerketteteListe {
 			ersterKnoten = neuerKnoten;
 			letzterKnoten = neuerKnoten;
 		}else{
-			letzterKnoten.setNaechsterKnoten(neuerKnoten);	
+			letzterKnoten.setNaechsterKnoten(neuerKnoten);
+			neuerKnoten.setVorherigerKnoten(letzterKnoten);
 			letzterKnoten = neuerKnoten;
 		}
 		
