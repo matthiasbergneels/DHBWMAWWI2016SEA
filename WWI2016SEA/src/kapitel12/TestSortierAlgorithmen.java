@@ -37,6 +37,21 @@ public class TestSortierAlgorithmen {
 		assertTrue(isSorted(SortierAlgorithmen.bubblesort(toSort.clone())));
 	}
 	
+	@Test
+	public void insertionsortTest() {
+		assertTrue(isSorted(SortierAlgorithmen.insertionsort(toSort.clone())));
+	}
+	
+	@Test
+	public void insertionsortZweiTest() {
+		assertTrue(isSorted(SortierAlgorithmen.insertionsortZwei(toSort.clone())));
+	}
+	
+	@Test
+	public void selectionsortTest() {
+		assertTrue(isSorted(SortierAlgorithmen.selectionSort(toSort.clone())));
+	}
+	
 	private static boolean isSorted(int[] array){
 		for(int i = 0; i < array.length-1; i++){
 			if(array[i] > array[i+1]){

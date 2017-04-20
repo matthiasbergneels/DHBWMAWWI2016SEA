@@ -24,9 +24,77 @@ public class SortierAlgorithmen {
 		
 		long endZeit = System.currentTimeMillis();
 		
-		System.out.println("BubbleSort Laufzeit für " + array.length + " Elemente: " + (endZeit - startZeit) + "ms");
+		printTime("BubbleSort" ,array, startZeit, endZeit);
 		
 		return array;
+	}
+	
+	public static int[] insertionsort(int[] array){
+		
+		long startZeit = System.currentTimeMillis();
+		
+		for(int i = 1; i < array.length; i++){
+			for(int j = i; j > 0; j--){
+				if(array[j] < array[j-1]){
+					swap(array, j, j-1);
+				}else{
+					break;
+				}
+			}
+		}
+		
+		long endZeit = System.currentTimeMillis();
+		
+		printTime("Insertionsort", array, startZeit, endZeit);
+		
+		return array;
+	}
+	
+	public static int[] insertionsortZwei(int[] array){
+		
+		long startZeit = System.currentTimeMillis();
+		
+		for(int i = 1; i < array.length; i++){
+			int j = i;
+			while(j > 0 && array[j] < array[j-1]){
+				swap(array, j, j-1);
+				j--;
+			}
+		}
+		
+		long endZeit = System.currentTimeMillis();
+		
+		printTime("InsertionSort Zwei", array, startZeit, endZeit);
+		
+		return array;
+	}
+	
+	public static int[] selectionSort(int[] array){
+		
+		long startZeit = System.currentTimeMillis();
+		
+		int marker = array.length - 1;
+		
+		while(marker > 0){
+			int maxPos = 0;
+			for(int i = 0; i <= marker; i++){
+				if(array[i] > array[maxPos]){
+					maxPos = i;
+				}
+			}
+			swap(array, marker, maxPos);
+			marker--;
+		}
+		
+		long endZeit = System.currentTimeMillis();
+		
+		printTime("SelectionSort", array, startZeit, endZeit);
+		
+		return array;
+	}
+
+	private static void printTime(String algorithmusName, int[] array, long startZeit, long endZeit) {
+		System.out.println("Laufzeit für " + algorithmusName + " mit " + array.length + " Elementen: " + (endZeit - startZeit)/1000.0 + "s");
 	}
 	
 	
@@ -50,6 +118,15 @@ public class SortierAlgorithmen {
 		
 		System.out.println("BubbleSort:");
 		printArray(bubblesort(zuSortieren.clone()));
+		
+		System.out.println("InsertionSort:");
+		printArray(insertionsort(zuSortieren.clone()));
+		
+		System.out.println("InsertionSortZwei:");
+		printArray(insertionsortZwei(zuSortieren.clone()));
+		
+		System.out.println("SelectionSort:");
+		printArray(selectionSort(zuSortieren.clone()));
 
 	}
 
