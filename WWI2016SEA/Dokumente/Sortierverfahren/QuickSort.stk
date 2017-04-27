@@ -88,5 +88,8 @@
       </strelem>
     </fall>
   </strelem>
+  <strelem typ="0" zx="0" zy="0" textcolor="-16777216" bgcolor="-1">
+    <text>103;105;98;32;97;114;114;97;121;32;122;117;114;252;99;107;</text>
+  </strelem>
 </struktogramm>
 

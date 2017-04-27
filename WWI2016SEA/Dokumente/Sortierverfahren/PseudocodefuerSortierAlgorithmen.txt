@@ -1,0 +1,58 @@
+BubbleSort:
+0. Methoden Signatur: int[] bubblesort(int[] array)
+1. initialisiere j (int) = array Länge - 1
+2. initialisiere swapped (boolean) = false
+3.1 weise zu swapped = false
+3.2 Für i (int) = 0 solange i kleiner j, inkrementere i um eins
+3.2.1 wenn array[i] > array[i+1]
+3.2.1.1 weise zu swapped = true
+3.2.1.2 tausche Element array[i] mit array[i+1]
+3.3 dekrementiere j um eins
+3. solange swapped (swapped == true)
+4. gib array zurück
+
+
+InsertionSort:
+0. Methoden Signatur: int[] insertionSort(int[] array)
+1. Zählerschleife: für int i = 2. Stelle des Arrays solange i kleiner als Ende des Arrays, inkrementiere i um eins
+1.1 Zählerschleife: Für int j = i solange j größer 0, dekrementiere i um eins
+1.1.1 Vergleiche: Wert des Arrays an der Stelle i kleiner als Wert des Arrays an der Stelle i+1
+1.1.1.1 tausche Wert des Arrays an der Stelle i mit Wert des Arrays an der Stelle i+1
+1.1.2. sonst
+1.1.2.1 breche innere Schleife ab
+2. gib array zurück
+
+
+SelectionSort:
+0. Methoden Signatur: int[] selectionsort(int[] array)
+1. initialisiere marker mit dem letzten Element des Arrays (array.length -1)
+2. solange marker > 0
+2.1 initialisiere maxPos (int) = 0
+2.2 Für i = 0 bis marker, inkrementiere i um eins
+2.2.1 wenn array[i] > array[maxPos]
+2.2.1.1 weise zu maxPos = i
+2.2 tausche Element array[marker] mit array[maxPos]
+2.3 dekrementiere Marker um eins
+3. gib array zurück
+
+
+QuickSort:
+0. Methoden Signatur: int[] quicksort(int[] array, int left, int right)
+1. initialisiere indexLeft (int) = left
+2. initialisiere indexRight (int) = right
+3. Wenn indexLeft < indexRight
+3.1 initialisiere pivot = array[(indexLeft + indexRight) / 2]
+3.2 Solange indexLeft <= indexRight
+3.2.1 Solange array[indexLeft] < pivot
+3.2.1.1 inkrementiere indexLeft um eins
+3.2.2 solange array[indexRight] > pivot
+3.2.2.1 dekrementiere indexRight um eins
+3.2.3 wenn indexLeft <= indexRight
+3.2.3.1 tausche Element array[indexLeft] mit array[indexRight]
+3.2.3.2 inkrementiere indexLeft um eins
+3.2.3.3 dekrementiere indexRight um eins
+3.3. wenn left < indexRight
+3.3.1 rekusrsiv: quicksort(array, left, indexRight)
+3.4 wenn right > indexLeft
+3.4.1 rekusrsiv: quicksort(array, indexLeft, right)
+4. gib array zurück
